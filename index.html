@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brain Boost – Math & English</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1FF;--card:#fff;--ink:#1E1B3A;--mute:#6B6890;--pri:#5B4BDB;--pri2:#8A5CF6;--ok:#19B97A;--bad:#FF5A5F;--sun:#FFC233;--line:#E3DFFA;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16142B;--card:#222042;--ink:#F2F0FF;--mute:#A9A5D6;--line:#35316A}}
+:root[data-theme="dark"]{--bg:#16142B;--card:#222042;--ink:#F2F0FF;--mute:#A9A5D6;--line:#35316A}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Baloo Thambi 2","Noto Sans Tamil",system-ui,sans-serif;font-weight:500;font-size:17px;line-height:1.35}
+#app{max-width:480px;margin:0 auto;padding:16px 16px 40px;min-height:100vh}
+h1,h2,h3{margin:0;font-weight:800}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.back{border:0;background:var(--card);color:var(--ink);width:44px;height:44px;border-radius:14px;font-size:20px;cursor:pointer;box-shadow:0 2px 0 var(--line)}
+.hero{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border-radius:28px;padding:22px 20px;margin-bottom:16px}
+.hero h1{font-size:32px;line-height:1.05}
+.hero p{margin:6px 0 14px;opacity:.9}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.2);border-radius:99px;padding:4px 12px;font-weight:700;font-size:15px}
+.menu{display:grid;gap:12px}
+.mbtn{display:flex;align-items:center;gap:14px;width:100%;border:0;border-radius:22px;padding:16px 18px;font:inherit;font-size:20px;font-weight:800;color:#fff;cursor:pointer;text-align:left;transition:transform .12s}
+.mbtn:active{transform:scale(.97)}
+.mbtn span{font-size:30px}
+.mbtn small{display:block;font-size:14px;font-weight:500;opacity:.9}
+.card{background:var(--card);border-radius:22px;padding:18px;margin-bottom:14px;box-shadow:0 2px 0 var(--line)}
+.lbl{font-weight:800;margin:12px 0 8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{flex:1 0 auto;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer}
+.opt.on{border-color:var(--pri);background:var(--pri);color:#fff}
+.big{display:block;width:100%;border:0;border-radius:18px;padding:15px;font:inherit;font-size:20px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--pri),var(--pri2));cursor:pointer;margin-top:14px;transition:transform .12s}
+.big:active{transform:scale(.97)}
+.big.ghost{background:var(--card);color:var(--ink);box-shadow:0 2px 0 var(--line)}
+.hud{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:10px}
+.hud div{background:var(--card);border-radius:14px;padding:6px 12px;font-size:16px}
+.bar{height:12px;background:var(--line);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--ok),var(--sun));border-radius:9px;transition:width .25s linear}
+.bar.low i{background:var(--bad)}
+.q{font-size:34px;font-weight:800;text-align:center;padding:26px 8px;animation:pop .3s}
+.q small{display:block;font-size:15px;color:var(--mute);font-weight:500}
+.ans{display:grid;gap:10px}
+.a{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:16px;font:inherit;font-size:21px;font-weight:700;cursor:pointer;text-align:left;display:flex;gap:12px;align-items:center;transition:transform .12s}
+.a:active{transform:scale(.97)}
+.a b{background:var(--line);border-radius:10px;width:34px;height:34px;display:grid;place-items:center;flex:none;font-size:16px}
+.a.right{background:var(--ok);border-color:var(--ok);color:#fff;animation:pop .35s}
+.a.wrong{background:var(--bad);border-color:var(--bad);color:#fff;animation:shake .35s}
+.a:disabled{cursor:default}
+.fb{text-align:center;font-weight:800;margin-top:12px;min-height:26px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--card);border-radius:18px;padding:14px;text-align:center;box-shadow:0 2px 0 var(--line)}
+.stat b{display:block;font-size:28px;font-weight:800;color:var(--pri)}
+:root[data-theme="dark"] .stat b{color:var(--sun)}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.badge{background:var(--card);border-radius:18px;padding:12px;text-align:center;font-size:14px;box-shadow:0 2px 0 var(--line)}
+.badge span{font-size:32px;display:block}
+.badge.lock{opacity:.4;filter:grayscale(1)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sw{width:56px;height:32px;border-radius:99px;border:0;background:var(--line);position:relative;cursor:pointer;flex:none}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--ok)}.sw.on::after{left:28px}
+.res{text-align:center}
+.res .em{font-size:64px;animation:pop .5s}
+.res .sc{font-size:56px;font-weight:800;color:var(--pri)}
+#toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translate(-50%,-140%);background:var(--sun);color:#1E1B3A;font-weight:800;padding:10px 18px;border-radius:99px;transition:transform .35s;z-index:9;box-shadow:0 6px 18px rgba(0,0,0,.25);max-width:92%}
+#toast.show{transform:translate(-50%,0)}
+.view{animation:in .25s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.9)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+<div id="app"></div>
+<script>
+const $=s=>document.querySelector(s);
+const KEY="brainboost.v1";
+const D={pts:0,high:0,corr:0,wrong:0,games:0,streak:0,last:"",badges:[],daily:"",sound:true,theme:""};
+let S={...D};
+try{S={...D,...JSON.parse(localStorage.getItem(KEY)||"{}")}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const today=()=>ymd(new Date());
+const yest=()=>{const d=new Date();d.setDate(d.getDate()-1);return ymd(d)};
+function applyTheme(){if(S.theme)document.documentElement.dataset.theme=S.theme;else delete document.documentElement.dataset.theme}
+applyTheme();
+
+/* sound */
+let AC;
+function tone(seq){if(!S.sound)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();let t=AC.currentTime;seq.forEach(([f,d,ty])=>{const o=AC.createOscillator(),g=AC.createGain();o.type=ty||"sine";o.frequency.value=f;g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d);t+=d*.9})}catch(e){}}
+const snd={ok:()=>tone([[660,.1],[880,.16]]),bad:()=>tone([[220,.18,"sawtooth"],[160,.25,"sawtooth"]]),lvl:()=>tone([[523,.12],[659,.12],[784,.12],[1047,.3]]),ach:()=>tone([[784,.1],[988,.1],[1175,.1],[1568,.3]])};
+let tt;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2600)}
+
+/* data */
+const W=[
+["Happy","மகிழ்ச்சி",0],["Water","தண்ணீர்",0],["Book","புத்தகம்",0],["Friend","நண்பன்",0],["Sun","சூரியன்",0],["Moon","நிலா",0],["Big","பெரிய",0],["Small","சிறிய",0],["House","வீடு",0],["Teacher","ஆசிரியர்",0],["Mother","அம்மா",0],["Food","உணவு",0],
+["Brave","தைரியமானவர்",1],["Lazy","சோம்பேறி",1],["Angry","கோபமான",1],["Afraid","பயந்த",1],["Honest","நேர்மையான",1],["Quick","விரைவான",1],["Quiet","அமைதியான",1],["Kind","அன்பான",1],["Strong","வலிமையான",1],["Clever","புத்திசாலி",1],["Proud","பெருமை",1],["Journey","பயணம்",1],
+["Generous","தாராளமான",2],["Humble","பணிவான",2],["Ancient","பழமையான",2],["Curious","ஆர்வமுள்ள",2],["Fearless","அச்சமற்ற",2],["Patience","பொறுமை",2],["Wisdom","ஞானம்",2],["Victory","வெற்றி",2],["Freedom","சுதந்திரம்",2],["Knowledge","அறிவு",2],["Courage","துணிவு",2],["Gratitude","நன்றியுணர்வு",2]];
+const LV=["easy","medium","hard"];
+const BADGES=[
+["🌱","First Steps","Finish your first game",(s)=>s.games>=1],
+["🎯","Sharp Mind","Get 25 correct answers",(s)=>s.corr>=25],
+["📚","Scholar","Get 100 correct answers",(s)=>s.corr>=100],
+["💯","Perfect Round","Finish a game with no mistakes",(s,g)=>g&&g.wrong===0&&g.done],
+["🧮","Math Whiz","Score 80+ in a Math game",(s,g)=>g&&g.mode==="math"&&g.score>=80],
+["🔤","Word Wizard","Score 80+ in an English game",(s,g)=>g&&g.mode==="eng"&&g.score>=80],
+["🔥","On Fire","Reach a 3-day streak",(s)=>s.streak>=3],
+["🏅","Daily Hero","Complete a Daily Challenge",(s)=>s.daily===today()],
+["⭐","Rising Star","Reach level 5",(s)=>lvl()>=5]];
+const lvl=()=>Math.floor(S.pts/100)+1;
+
+/* random */
+function R(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const ri=(r,a,b)=>a+Math.floor(r()*(b-a+1));
+const shuf=(r,a)=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+function mathQ(r,l,op){
+  const o=op==="mix"?["+","−","×","÷"][ri(r,0,3)]:op;
+  const rg=[[1,20],[10,99],[100,999]][l];
+  const mr=[[[2,5],[1,10]],[[2,12],[2,12]],[[11,25],[3,15]]][l];
+  let a,b,ans;
+  if(o==="+"){a=ri(r,...rg);b=ri(r,...rg);ans=a+b}
+  else if(o==="−"){a=ri(r,...rg);b=ri(r,...rg);if(b>a)[a,b]=[b,a];ans=a-b}
+  else if(o==="×"){a=ri(r,...mr[0]);b=ri(r,...mr[1]);ans=a*b}
+  else{b=ri(r,...mr[0]);ans=ri(r,...mr[1]);a=b*ans}
+  const set=new Set([ans]);
+  while(set.size<4){const v=ans+ri(r,1,Math.max(5,Math.round(ans*.2)))*(r()<.5?-1:1);if(v>=0)set.add(v)}
+  const opts=shuf(r,[...set]);
+  return{t:`${a} ${o} ${b} = ?`,sub:"Solve it",opts:opts.map(String),ans:opts.indexOf(ans),tag:"math"}}
+function engQ(r,l,dir){
+  const pool=l===-1?W:W.filter(w=>w[2]===l);
+  const d=dir==="mix"?(r()<.5?"en":"ta"):dir;
+  const w=pool[ri(r,0,pool.length-1)];
+  const k=d==="en"?1:0;
+  const others=shuf(r,W.filter(x=>x[k]!==w[k])).slice(0,3).map(x=>x[k]);
+  const opts=shuf(r,[w[k],...others]);
+  return{t:d==="en"?`“${w[0]}” means:`:`“${w[1]}” in English is:`,sub:d==="en"?"Choose the Tamil meaning":"Choose the English word",opts,ans:opts.indexOf(w[k]),tag:"eng"}}
+
+/* state */
+let G=null,timer=null;
+const app=$("#app");
+const show=(html)=>{stopT();app.innerHTML=`<div class="view">${html}</div>`;window.scrollTo(0,0)};
+const stopT=()=>{clearInterval(timer);timer=null};
+const topbar=(t,back="menu")=>`<div class="top"><button class="back" onclick="go('${back}')" aria-label="Back">←</button><h2>${t}</h2></div>`;
+
+function go(v){stopT();({menu,mathSetup,engSetup,stats,daily,settings})[v]()}
+
+function menu(){
+  const need=Math.max(0,lvl()*100-S.pts),pc=S.pts%100;
+  const items=[["🧮","Math Game","Add, subtract, multiply, divide","mathSetup","#5B4BDB"],["🇬🇧","English Meaning Game","English ↔ Tamil words","engSetup","#0FA3B1"],["🏆","Score & Achievements","Points, badges, streak","stats","#F59E0B"],["🔥","Daily Challenge",S.daily===today()?"Done today ✅":"10 questions + bonus","daily","#F2545B"],["⚙️","Settings","Sound, theme, reset","settings","#64748B"]];
+  show(`<div class="hero"><h1>🧠 Brain Boost</h1><p>Math & English practice, one round at a time.</p><div class="chips"><span class="chip">⭐ Level ${lvl()}</span><span class="chip">🔥 ${S.streak}-day streak</span><span class="chip">${S.pts} pts</span></div></div>
+  <div class="menu">${items.map(i=>`<button class="mbtn" style="background:${i[4]}" onclick="go('${i[3]}')"><span>${i[0]}</span><div>${i[1]}<small>${i[2]}</small></div></button>`).join("")}</div>`)}
+
+const pick={};
+function chips(name,opts,def){pick[name]=pick[name]??def;return `<div class="opts" id="o-${name}">${opts.map(o=>`<button class="opt ${pick[name]===o[0]?"on":""}" onclick="sel('${name}','${o[0]}')">${o[1]}</button>`).join("")}</div>`}
+function sel(n,v){pick[n]=v;[...$("#o-"+n).children].forEach(b=>b.classList.toggle("on",b.getAttribute("onclick")===`sel('${n}','${v}')`))}
+const LVL=[[0,"🟢 Easy"],[1,"🟡 Medium"],[2,"🔴 Hard"]].map(x=>[String(x[0]),x[1]]);
+function mathSetup(){show(topbar("🧮 Math Game")+`<div class="card"><div class="lbl">Operation</div>${chips("op",[["+","➕ Add"],["−","➖ Subtract"],["×","✖️ Multiply"],["÷","➗ Divide"],["mix","🎲 Mixed"]],"mix")}<div class="lbl">Level</div>${chips("ml",LVL,"0")}<button class="big" onclick="startGame('math')">Start ▶</button></div><p style="color:var(--mute);text-align:center">10 questions · 3 lives · 30 seconds each</p>`)}
+function engSetup(){show(topbar("🇬🇧 English Meaning")+`<div class="card"><div class="lbl">Mode</div>${chips("dir",[["en","English → Tamil"],["ta","Tamil → English"],["mix","🎲 Mixed"]],"en")}<div class="lbl">Level</div>${chips("el",LVL,"0")}<button class="big" onclick="startGame('eng')">Start ▶</button></div><p style="color:var(--mute);text-align:center">10 questions · 3 lives · 30 seconds each</p>`)}
+
+function startGame(mode){
+  const r=Math.random;let qs=[];
+  if(mode==="math"){const l=+pick.ml;qs=Array.from({length:10},()=>mathQ(r,l,pick.op))}
+  else if(mode==="eng"){const l=+pick.el;qs=Array.from({length:10},()=>engQ(r,l,pick.dir))}
+  else{const rr=R(+today().replace(/-/g,""));for(let i=0;i<5;i++)qs.push(mathQ(rr,i%3,"mix"));for(let i=0;i<5;i++)qs.push(engQ(rr,-1,"mix"));}
+  G={mode,qs,i:0,score:0,lives:3,corr:0,wrong:0,done:false,locked:false};
+  ask()}
+
+function ask(){
+  const q=G.qs[G.i];G.locked=false;G.end=Date.now()+30000;
+  const back=G.mode==="daily"?"daily":G.mode==="math"?"mathSetup":"engSetup";
+  show(`<div class="top"><button class="back" onclick="if(confirm('Quit this game?'))go('${back}')" aria-label="Quit">✕</button><div class="bar" style="flex:1"><i id="tb"></i></div><b id="tn">30</b></div>
+  <div class="hud"><div>⭐ ${G.score}</div><div>Q ${G.i+1}/${G.qs.length}</div><div>${"❤️".repeat(G.lives)||"💔"}</div></div>
+  <div class="card"><div class="q"><small>${q.sub}</small>${q.t}</div><div class="ans">${q.opts.map((o,i)=>`<button class="a" onclick="answer(${i})"><b>${"ABCD"[i]}</b>${o}</button>`).join("")}</div><div class="fb" id="fb"></div><div id="nx"></div></div>`);
+  timer=setInterval(tick,200);tick()}
+function tick(){
+  const left=Math.max(0,(G.end-Date.now())/1000);
+  const tb=$("#tb");if(!tb)return;
+  tb.style.width=(left/30*100)+"%";tb.parentNode.classList.toggle("low",left<=8);$("#tn").textContent=Math.ceil(left);
+  if(left<=0)answer(-1)}
+
+function answer(i){
+  if(G.locked)return;G.locked=true;stopT();
+  const q=G.qs[G.i],btns=[...document.querySelectorAll(".a")];
+  btns.forEach(b=>b.disabled=true);
+  btns[q.ans].classList.add("right");
+  let ok=i===q.ans;
+  if(ok){G.score+=10;G.corr++;S.corr++;S.pts+=10;snd.ok();$("#fb").innerHTML="✅ Correct! +10"}
+  else{if(i>=0)btns[i].classList.add("wrong");G.score=Math.max(0,G.score-5);G.wrong++;S.wrong++;S.pts=Math.max(0,S.pts-5);G.lives--;snd.bad();$("#fb").innerHTML=(i<0?"⏰ Time's up!":"❌ Wrong!")+" −5"}
+  save();
+  const last=G.lives<=0||G.i===G.qs.length-1;
+  $("#nx").innerHTML=`<button class="big" onclick="${last?"finish()":"next()"}">${last?"See Results 🏁":"Next Question ➜"}</button>`;
+  document.querySelector(".hud").firstElementChild.textContent="⭐ "+G.score;
+  document.querySelector(".hud").lastElementChild.textContent="❤️".repeat(Math.max(0,G.lives))||"💔"}
+function next(){G.i++;ask()}
+
+function finish(){
+  const before=lvl();
+  G.done=G.lives>0;
+  let bonus=0;
+  if(G.mode==="daily"&&G.done&&S.daily!==today()){bonus=50;S.pts+=50;G.score+=50;S.daily=today()}
+  S.games++;S.high=Math.max(S.high,G.score);
+  if(S.last!==today()){S.streak=S.last===yest()?S.streak+1:1;S.last=today()}
+  const newB=[];BADGES.forEach((b,i)=>{if(!S.badges.includes(i)&&b[3](S,G)){S.badges.push(i);newB.push(b)}});
+  save();
+  const max=G.qs.length*10,pct=Math.max(0,G.score-bonus)/max*100;
+  const [em,msg]=!G.done?["💔","Out of lives — try again!"]:pct>=90?["🏆","Outstanding! You're a genius!"]:pct>=70?["🌟","Great job! Keep it up!"]:pct>=40?["👍","Good effort — practice makes perfect."]:["💪","Don't give up — you'll improve!"];
+  const up=lvl()>before;
+  if(up)setTimeout(()=>{snd.lvl();toast("🎉 Level "+lvl()+" reached!")},300);
+  if(newB.length)setTimeout(()=>{snd.ach();toast(newB.map(b=>b[0]+" "+b[1]).join("  "))},up?2800:300);
+  else if(!up&&G.done)setTimeout(snd.lvl,200);
+  const m=G.mode;
+  show(`<div class="card res"><div class="em">${em}</div><h2>${msg}</h2><div class="sc">${G.score}</div><div style="color:var(--mute)">points${bonus?" (includes +50 daily bonus 🎁)":""}</div>
+  <div class="stats" style="margin-top:14px"><div class="stat"><b>${G.corr}</b>Correct</div><div class="stat"><b>${G.wrong}</b>Wrong</div></div>
+  ${newB.length?`<div class="lbl">New badge${newB.length>1?"s":""}: ${newB.map(b=>b[0]+" "+b[1]).join(", ")}</div>`:""}
+  ${m==="daily"?"":`<button class="big" onclick="startGame('${m}')">Play again 🔁</button>`}
+  <button class="big ghost" onclick="go('stats')">🏆 My progress</button><button class="big ghost" onclick="go('menu')">🏠 Menu</button></div>`)}
+
+function stats(){
+  const pc=S.pts%100;
+  show(topbar("🏆 Achievements")+`<div class="card"><div class="row"><b>Level ${lvl()}</b><span style="color:var(--mute)">${pc}/100 to next</span></div><div class="bar" style="margin-top:8px"><i style="width:${pc}%"></i></div></div>
+  <div class="stats"><div class="stat"><b>${S.pts}</b>Total points</div><div class="stat"><b>${S.high}</b>Highest score</div><div class="stat"><b>${S.corr}</b>Correct answers</div><div class="stat"><b>${S.wrong}</b>Wrong answers</div><div class="stat"><b>🔥 ${S.streak}</b>Daily streak</div><div class="stat"><b>${S.games}</b>Games played</div></div>
+  <div class="lbl" style="margin-top:18px">Badges (${S.badges.length}/${BADGES.length})</div><div class="badges">${BADGES.map((b,i)=>`<div class="badge ${S.badges.includes(i)?"":"lock"}"><span>${b[0]}</span><b>${b[1]}</b><br>${b[2]}</div>`).join("")}</div>`)}
+
+function daily(){
+  const d=S.daily===today();
+  show(topbar("🔥 Daily Challenge")+`<div class="card" style="text-align:center"><div style="font-size:56px">${d?"✅":"🔥"}</div><h3>${d?"Completed today!":"Today's challenge"}</h3><p>5 Math + 5 English questions<br>Finish all 10 to win <b>+50 bonus points</b>.</p><p style="color:var(--mute)">🔥 Streak: ${S.streak} day${S.streak===1?"":"s"}</p>
+  <button class="big" onclick="startGame('daily')">${d?"Practice again (no bonus)":"Start challenge ▶"}</button></div>`)}
+
+function settings(){
+  show(topbar("⚙️ Settings")+`<div class="card"><div class="row"><div><b>🔊 Sound effects</b><br><small style="color:var(--mute)">Correct, wrong, level up, badges</small></div><button class="sw ${S.sound?"on":""}" onclick="S.sound=!S.sound;save();if(S.sound)snd.ok();settings()" aria-label="Toggle sound"></button></div></div>
+  <div class="card"><div class="row"><div><b>🌙 Dark mode</b></div><button class="sw ${document.documentElement.dataset.theme==="dark"||(!S.theme&&matchMedia("(prefers-color-scheme:dark)").matches)?"on":""}" onclick="toggleTheme()" aria-label="Toggle dark mode"></button></div></div>
+  <div class="card"><b>🗑️ Reset progress</b><br><small style="color:var(--mute)">Deletes points, badges and streak on this device.</small><button class="big" style="background:var(--bad)" onclick="if(confirm('Delete all progress?')){S={...D};save();applyTheme();toast('Progress reset');go('menu')}">Reset everything</button></div>`)}
+function toggleTheme(){const dark=document.documentElement.dataset.theme==="dark"||(!S.theme&&matchMedia("(prefers-color-scheme:dark)").matches);S.theme=dark?"light":"dark";save();applyTheme();settings()}
+
+menu();
+</script>
+</body>
+</html>
